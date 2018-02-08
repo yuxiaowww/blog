@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="bolg">
+  <meta name="keyword" content="vuejs">
+  
+    <link rel="shortcut icon" href="/blog/css/images/logo.png">
+  
+  <title>
+    
+      Tags | vue
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/blog/css/style.css">
+<link rel="stylesheet" href="/blog/css/plugins/gitment.css">
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/blog/js/qrious.js"></script>
+<script src="/blog/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/blog/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/blog/">
+      <div class="logo"></div>
+      <span>vue</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/blog/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/blog/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div class="tag-content" style="min-height:100%">
+    <div id="article-banner">
+        <h2>Tags</h2>
+        <p class="post-date">标签检索</p>
+    </div>
+    <main class="app-body" style="padding-bottom:70px">
+        <div id="tag-cloud">
+            
+            <a class="tag1" data-name="tag-Init">Init</a>
+            
+            <a class="tag2" data-name="tag-javascript">javascript</a>
+            
+            <a class="tag2" data-name="tag-vue">vue</a>
+            
+        </div>
+        
+            <div class="tag-list">
+                <h3 class="tag-name" id="tag-Init">Init</h3>
+                
+                    <ul class="tag-preview">
+                        <li>
+                            <a href="/blog/2018/02/08/hello-world/">Hello World</a>
+                        </li>
+                    </ul>
+                
+            </div>
+        
+            <div class="tag-list">
+                <h3 class="tag-name" id="tag-javascript">javascript</h3>
+                
+                    <ul class="tag-preview">
+                        <li>
+                            <a href="/blog/2018/02/08/javascript-function/">js 常见方法</a>
+                        </li>
+                    </ul>
+                
+            </div>
+        
+            <div class="tag-list">
+                <h3 class="tag-name" id="tag-vue">vue</h3>
+                
+                    <ul class="tag-preview">
+                        <li>
+                            <a href="/blog/2018/02/08/vue-组件间通信/">vue 组件间通信</a>
+                        </li>
+                    </ul>
+                
+            </div>
+        
+    </main>
+</div>
+
+<script>
+  (function () {
+    var url = 'https://kuangpf.github.io/blog/tags/index.html'
+    $('#article-banner').geopattern(url)
+    $('.header').removeClass('fixed-header')
+
+    var tag = location.hash.replace('#', '')
+    if (tag) {
+      var tagId = "#tag-" + tag;
+      $("html, body").animate({
+        scrollTop: $(tagId).offset().top 
+      }, 400)
+    }
+  })();
+</script>
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | powered by <a href="https://hexo.io" target="_blank">Hexo</a><span id="busuanzi_container_site_pv">
+     | Views:<span id="busuanzi_value_site_pv"></span>
+    </span>
+    <br>
+    Own by <a href="https://github.com/KuangPF">KuangPF</a>
+  </p>
+ 
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/blog/js/script.js"></script>
+  </body>
+</html>

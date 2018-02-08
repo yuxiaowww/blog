@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="bolg">
+  <meta name="keyword" content="vuejs">
+  
+    <link rel="shortcut icon" href="/blog/css/images/logo.png">
+  
+  <title>
+    
+      vue 组件间通信 | vue
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/blog/css/style.css">
+<link rel="stylesheet" href="/blog/css/plugins/gitment.css">
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/blog/js/qrious.js"></script>
+<script src="/blog/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/blog/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/blog/">
+      <div class="logo"></div>
+      <span>vue</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/blog/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/blog/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div class="page-content" style="min-height:100%">
+    <div id="article-banner">
+        <h2>vue 组件间通信</h2>
+        <p class="post-date">2018-02-08</p>
+        <div class="arrow-down">
+            <a href="javascript:;"></a>
+        </div>
+    </div>
+    <main class="app-body flex-box" style="padding-bottom:70px;margin-top:20px">
+    <!-- Article START -->
+        <article class="post-article">
+            <section class="markdown-content"><p>最近在学习vue方面的的知识，毫无疑问，对于vue来说，组件化是其一个很大的特点，一方面可以提高代码的可读性，另一方面可以少写很多的代码，利于代码的维护。对于组件之间数据通信是一个必须要掌握的知识点，通信之间的方式一共可以分为三种，父组件与子组件，子组件与父组件，同级组件间通信。</p>
+<h3 id="父组件与子组件"><a href="#父组件与子组件" class="headerlink" title="父组件与子组件"></a>父组件与子组件</h3><p>在vue中，父子组件的关系可以总结为 prop 向下传递，事件向上传递。父组件通过 prop 给子组件下发数据，子组件通过事件给父组件发送消息。<br><img src="/img/vue-components-bus-01.png"><br>父组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt; </span><br><span class="line">     &lt;div class=&quot;components-bus-container&quot;&gt;</span><br><span class="line">        &lt;children-one :fatherDataOne=&quot;fatherDataOne&quot;&gt;&lt;/children-one&gt;</span><br><span class="line">     &lt;/div&gt; </span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            fatherDataOne: &apos;&apos;,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>子组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div class=&quot;children-one-content&quot;&gt;</span><br><span class="line">        &lt;div&gt;&#123;&#123;fatherDataOne&#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">    &#125;,</span><br><span class="line">    props: [&apos;fatherDataOne&apos;]</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p></p><p class="tip"><code>:fatherDataOne</code>为数据绑定写法，可以灵活的进行数据设置，如果直接绑定数据，写成<code>fatherDataOne=&quot;someData&quot;</code>即可</p><p></p>
+<h3 id="子组件与父组件通信"><a href="#子组件与父组件通信" class="headerlink" title="子组件与父组件通信"></a>子组件与父组件通信</h3><p>对于子组件将数据传给父组件，是通过<code>$emit</code>事件来实现的，在图中也可以体现，具体实现如下：<br>子组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div class=&quot;children-one-content&quot;&gt;</span><br><span class="line">        &lt;div&gt;&#123;&#123;fatherDataOne&#125;&#125;&lt;/div&gt;</span><br><span class="line">        &lt;div @click=&quot;tellParent&quot;&gt;点击传递数据&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">    &#125;,</span><br><span class="line">    props: [&apos;fatherDataOne&apos;]，</span><br><span class="line">    methods: &#123;</span><br><span class="line">        tellParent() &#123;</span><br><span class="line">          this.$emit(&apos;listenOne&apos;, &apos;from childrenOne&apos;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>父组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt; </span><br><span class="line">     &lt;div class=&quot;components-bus-container&quot;&gt;</span><br><span class="line">        &lt;children-one :fatherDataOne=&quot;fatherDataOne&quot; @listenOne=&apos;getCompomentOne&apos;&gt;&lt;/children-one&gt;</span><br><span class="line">     &lt;/div&gt; </span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">          fatherDataOne: &apos;&apos;,</span><br><span class="line">      &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    getCompomentOne(param) &#123;</span><br><span class="line">      console.log(param);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在父组件中绑定一个<code>listenOne</code>的事件，然后给这个事件添加<code>getCompomentOne</code>方法，当子组件children-one通过点击事件<code>tellParent</code>触发<code>listenOne</code>的时候，父组件里面的<code>getCompomentOne</code>方法就会执行，并且数据通过参数的形式传递给父组件，从而实现通信的功能。</p>
+<h3 id="同级组件间通信"><a href="#同级组件间通信" class="headerlink" title="同级组件间通信"></a>同级组件间通信</h3><p>对于同级间组件进行通信处理的方法是，新建一个Vue实例作为事件总线，具体实现如下：<br>1.需要进行通信的同级组件引入<code>event.js</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>; </span><br><span class="line"><span class="keyword">let</span> bus = <span class="keyword">new</span> Vue(); </span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> bus;</span><br></pre></td></tr></table></figure></p>
+<p>2.组件<code>children-one</code>通过点击事件<code>sendMsgToTwo</code>触发<code>dataFromOne</code><br>children-one<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div class=&quot;children-one-content&quot;&gt;</span><br><span class="line">        &lt;div&gt;&#123;&#123;fatherDataOne&#125;&#125;&lt;/div&gt;</span><br><span class="line">        &lt;div @click=&quot;tellParent&quot;&gt;点击向父组件通信&lt;/div&gt;</span><br><span class="line">        &lt;div @click=&quot;tellChildTwo&quot;&gt;点击向子组件2通信&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import bus from &apos;path/event&apos;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">  &#125;,</span><br><span class="line">  props: [&apos;fatherDataOne&apos;]，</span><br><span class="line">  methods: &#123;</span><br><span class="line">    tellParent() &#123;</span><br><span class="line">      this.$emit(&apos;listenOne&apos;, &apos;from childrenOne&apos;);</span><br><span class="line">    &#125;,</span><br><span class="line">    tellChildTwo() &#123;</span><br><span class="line">      bus.$emit(&apos;dataFromOne&apos;, &apos;dataFromOne&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>3.组件<code>children-two</code>中监听事件 <code>dataFromOne</code><br>children-two<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div class=&quot;children-two-content&quot;&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import bus from &apos;path/event&apos;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    getMsgFromOne() &#123;</span><br><span class="line">      bus.$on(&apos;dataFromOne&apos;, data =&gt; &#123;</span><br><span class="line">        console.log(data);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    this.getMsgFromOne();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>当<code>children-one</code>触发<code>dataFromOne</code>时，组件<code>children-two</code>中的监听事件<code>dataFromOne</code>就会被触发，数据通过参数的形式传入，从而实现同级组件间通信。</p>
+<h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><h5 id="1-父组件操作子组件的方法"><a href="#1-父组件操作子组件的方法" class="headerlink" title="1.父组件操作子组件的方法"></a>1.父组件操作子组件的方法</h5><p>利用$refs实现这个功能<br>父组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;children-one :fatherDataOne=&quot;fatherDataOne&quot; @listenOne=&apos;getCompomentOne&apos; ref=&quot;childrenOne&quot;&gt;&lt;/children-one&gt;</span><br></pre></td></tr></table></figure></p>
+<p>那么就可以通过<code>this.$refs.childrenOne.childenFunction()</code>来操作子组件中的方法。</p>
+<h5 id="2-父组件将数据传给子组件，出现undefined情况"><a href="#2-父组件将数据传给子组件，出现undefined情况" class="headerlink" title="2.父组件将数据传给子组件，出现undefined情况"></a>2.父组件将数据传给子组件，出现<code>undefined</code>情况</h5><p>当父组件传递的数据是异步取值的时候，可能出现首先传过去是空值，然后异步刷新。对于这种情况处理的方法是<code>v-if</code>，当父组件拿到数据后，将其设置为true，从而避免undefined的情况。</p>
+<h3 id="高级用法"><a href="#高级用法" class="headerlink" title="高级用法"></a>高级用法</h3><p>对于一些简单的组件间的通信个人觉得这些方式够用了，如果一个页面涉及到很多的组件，那么也许这种方法不是那么简洁了，这是就需要用到<code>vue</code>中很重要的一个插件了<code>vuex</code>,以下为官网对<code>vuex</code>的介绍：<br><a href="https://vuex.vuejs.org/" target="_blank" rel="noopener">vuex</a>是一个专为 Vue.js 应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。Vuex 也集成到 Vue 的官方调试工具 <a href="https://github.com/vuejs/vue-devtools" target="_blank" rel="noopener">devtools extension</a>，提供了诸如零配置的 time-travel 调试、状态快照导入导出等高级调试功能。<br>如果您不打算开发大型单页应用，使用 Vuex 可能是繁琐冗余的。确实是如此——如果您的应用够简单，您最好不要使用 Vuex。一个简单的 global event bus 就足够您所需了。但是，如果您需要构建是一个中大型单页应用，您很可能会考虑如何更好地在组件外部管理状态，Vuex 将会成为自然而然的选择。引用 Redux 的作者 Dan Abramov 的话说就是：</p>
+<blockquote>
+<p>Flux 架构就像眼镜：您自会知道什么时候需要它。</p>
+</blockquote>
+<p>本文简单介绍了<code>vue</code>组件间的通信方式，如有错误，还望指出，大家一起交流学习。</p>
+</section>
+            <!-- Tags START -->
+            
+                <div class="tags">
+                    <span>Tags:</span>
+                    
+  <a href="/blog/blog/tags#vue" >
+    <span class="tag-code">vue</span>
+  </a>
+
+                </div>
+            
+            <!-- Tags END -->
+            <!-- view Start -->
+            <div class="article-view">
+                <span id="busuanzi_container_page_pv">浏览量
+                    <i class="fa fa-eye" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                </span>
+            </div>
+            <!-- view END -->
+            <!-- 打赏 START -->
+            
+            <!-- 打赏 END -->
+            <!-- 二维码 START -->
+            
+            <div class="qrcode">
+                <canvas id="share-qrcode"></canvas>
+                <p class="notice">扫描二维码，分享此文章</p>
+            </div>
+            
+            <!-- 二维码 END -->
+            
+                <!-- Gitment START -->
+                <div id="comments"></div>
+                <div id="container"></div>
+                <!-- Gitment END -->
+                
+        </article>
+        <!-- Article END -->
+        <!-- Catalog START -->
+        
+            <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#父组件与子组件"><span class="toc-nav-text">父组件与子组件</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#子组件与父组件通信"><span class="toc-nav-text">子组件与父组件通信</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#同级组件间通信"><span class="toc-nav-text">同级组件间通信</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#扩展"><span class="toc-nav-text">扩展</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#1-父组件操作子组件的方法"><span class="toc-nav-text">1.父组件操作子组件的方法</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#2-父组件将数据传给子组件，出现undefined情况"><span class="toc-nav-text">2.父组件将数据传给子组件，出现undefined情况</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#高级用法"><span class="toc-nav-text">高级用法</span></a></li></ol>
+    
+  </div>
+</aside>
+        
+        <!-- Catalog END -->
+    </main>
+</div>
+
+<script>
+  (function () {
+    var url = 'https://kuangpf.github.io/blog/2018/02/08/vue-组件间通信/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    var gitment = new Gitment({
+        /* id: '页面 ID', // 可选。默认为 location.href */
+        owner: 'KuangPF',
+        repo: 'blog',
+        oauth: {
+            client_id: 'c3e4aa2ce93f644ca3dc',
+            client_secret: '5354b1e59a5cf69b941879c458dd759640823a17',
+        },
+    })
+    gitment.render('container')
+    // gitment
+    /* var gitmentConfig = "KuangPF";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "vue 组件间通信",
+        owner: "KuangPF",
+        repo: "bolg",
+        oauth: {
+          client_id: "c3e4aa2ce93f644ca3dc",
+          client_secret: "5354b1e59a5cf69b941879c458dd759640823a17"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    } */
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | powered by <a href="https://hexo.io" target="_blank">Hexo</a><span id="busuanzi_container_site_pv">
+     | Views:<span id="busuanzi_value_site_pv"></span>
+    </span>
+    <br>
+    Own by <a href="https://github.com/KuangPF">KuangPF</a>
+  </p>
+ 
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/blog/js/script.js"></script>
+  </body>
+</html>
