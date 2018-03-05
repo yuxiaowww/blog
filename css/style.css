@@ -84,7 +84,7 @@ pre {
   font-size: 0.8em;
   display: inline-block;
   background-color: #f8f8f8;
-  color: #f66;
+  color: #e96900;
   padding: 3px 5px;
   margin: 0 2px 5px 0;
   border-radius: 2px;
@@ -97,6 +97,9 @@ pre {
 }
 .article-card:first-child {
   padding-top: 60px;
+}
+:last-child {
+  border: none;
 }
 h2.article-head {
   font-size: 1.6em;
@@ -527,7 +530,6 @@ h2.article-head {
 .markdown-content,
 .article-summary {
   text-align: justify;
-  word-break: break-all;
 }
 .markdown-content pre,
 .article-summary pre,
@@ -558,7 +560,7 @@ h2.article-head {
 .markdown-content p code,
 .article-summary p code {
   background-color: #f8f8f8;
-  color: #f66;
+  color: #e96900;
   padding: 3px 5px;
   margin: 0 2px;
   border-radius: 2px;
@@ -586,7 +588,7 @@ h2.article-head {
 }
 .markdown-content h4:before,
 .article-summary h4:before {
-  content: "#";
+  content: "";
   color: #42b983;
   margin-right: 5px;
   font-size: 1.2em;
@@ -623,7 +625,7 @@ h2.article-head {
 .article-summary img {
   max-width: 100%;
   display: block;
-  margin: 20px auto;
+  margin: 20px 0;
   cursor: zoom-in;
 }
 .markdown-content figure,
@@ -772,10 +774,10 @@ h2.article-head {
 }
 #archives:before {
   position: absolute;
-  top: 2em;
+  top: 1em;
   bottom: 1em;
   left: 30px;
-  height: auto;
+  height: 91%;
   content: '';
   background-color: #42b983;
   width: 4px;
@@ -808,7 +810,7 @@ h2.article-head {
 .time-section .section-list .section-list-item:before {
   position: absolute;
   left: -29px;
-  top: 7px;
+  top: 20px;
   content: '';
   background-color: #42b983;
   width: 10px;
@@ -1017,7 +1019,7 @@ h2.article-head {
 .catalog-container .toc-main {
   padding-left: 20px;
   border-left: 1px solid #e5e5e5;
-  width: 280px;
+  width: 300px;
   box-sizing: border-box;
 }
 .catalog-container .toc-main .toc-title {

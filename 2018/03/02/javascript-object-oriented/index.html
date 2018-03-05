@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="bolg">
+  <meta name="keyword" content="vuejs">
+  
+    <link rel="shortcut icon" href="/blog/css/images/logo.png">
+  
+  <title>
+    
+      javascript 面向对象的程序设计 | KuangPF🖖blog
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/blog/css/style.css">
+<link rel="stylesheet" href="/blog/css/plugins/gitment.css">
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/blog/js/qrious.js"></script>
+<script src="/blog/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/blog/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/blog/">
+      <div class="logo"></div>
+      <span>vue</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/blog/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/blog/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div class="page-content" style="min-height:100%">
+    <div id="article-banner">
+        <h2>javascript 面向对象的程序设计</h2>
+        <p class="post-date">2018-03-02</p>
+        <div class="arrow-down">
+            <a href="javascript:;"></a>
+        </div>
+    </div>
+    <main class="app-body flex-box" style="padding-bottom:70px;margin-top:20px">
+    <!-- Article START -->
+        <article class="post-article">
+            <section class="markdown-content"><p>这篇博客是该系列文章的一个入口，打算通过一点一点地介绍<code>javascript</code>的对象，然后理解一些平时感觉很难理解的一些知识点，比如<strong>原型链</strong>，<strong>继承</strong>，<strong>工厂模式</strong>等等，希望能通过一些简单易懂的语言来阐述<code>javascript</code>对象这部分。</p>
+<ul>
+<li>主要参考书籍 : 《JavaScript 高级程序设计（第三版）》</li>
+<li>画图工具 : <a href="https://www.processon.com/" target="_blank" rel="noopener">ProcessOn</a></li>
+</ul>
+<p>这系列文章是在读了《JavaScript 高级程序设计（第三版）》后写的，也可以说是对里面知识点的一个重现吧。旨在加深对对象的理解，也希望大家能一起交流学习。</p>
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ol>
+<li><a href="https://kuangpf.github.io/blog/2018/03/02/javascript-understand-object/">javascript 面向对象的程序设计(一)=====理解对象</a></li>
+<li><a href="https://kuangpf.github.io/blog/2018/03/02/javascript-object-properties/">javascript 面向对象的程序设计(二)=====对象属性</a></li>
+</ol>
+</section>
+            <!-- Tags START -->
+            
+                <div class="tags">
+                    <span>Tags:</span>
+                    
+  <a href="/blog/tags#javascript" >
+    <span class="tag-code">javascript</span>
+  </a>
+
+  <a href="/blog/tags#Object-Oriented" >
+    <span class="tag-code">Object-Oriented</span>
+  </a>
+
+
+
+                </div>
+            
+            <!-- Tags END -->
+            <!-- view Start -->
+            <div class="article-view">
+                <span id="busuanzi_container_page_pv">浏览量
+                    <i class="fa fa-eye" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                </span>
+            </div>
+            <!-- view END -->
+            <!-- 打赏 START -->
+            
+            <!-- 打赏 END -->
+            <!-- 二维码 START -->
+            
+            <div class="qrcode">
+                <canvas id="share-qrcode"></canvas>
+                <p class="notice">扫描二维码，分享此文章</p>
+            </div>
+            
+            <!-- 二维码 END -->
+            
+                <!-- Gitment START -->
+                <div id="container"></div>
+                <!-- Gitment END -->
+                
+        </article>
+        <!-- Article END -->
+        <!-- Catalog START -->
+        
+            <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#目录"><span class="toc-nav-text">目录</span></a></li></ol>
+    
+  </div>
+</aside>
+        
+        <!-- Catalog END -->
+    </main>
+</div>
+
+<script>
+  (function () {
+    var url = 'https://kuangpf.github.io/blog/2018/03/02/javascript-object-oriented/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    var gitment = new Gitment({
+        id: 'javascript 面向对象的程序设计', // 可选。默认为 location.href
+        owner: 'KuangPF',
+        repo: 'blog',
+        oauth: {
+            client_id: 'b72ce2d9cb2b8c5175a5',
+            client_secret: 'ed963635170152c37f7c7c087049f00d01055b6c',
+        },
+    })
+    gitment.render('container')
+    // gitment
+    /* var gitmentConfig = "KuangPF";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "javascript 面向对象的程序设计",
+        owner: "KuangPF",
+        repo: "bolg",
+        oauth: {
+          client_id: "b72ce2d9cb2b8c5175a5",
+          client_secret: "ed963635170152c37f7c7c087049f00d01055b6c"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    } */
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | powered by <a href="https://hexo.io" target="_blank">Hexo</a><span id="busuanzi_container_site_pv">
+     | Views:<span id="busuanzi_value_site_pv"></span>
+    </span>
+    <br>
+    Own by <a href="https://github.com/KuangPF">KuangPF</a>
+  </p>
+ 
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/blog/js/script.js"></script>
+  </body>
+</html>

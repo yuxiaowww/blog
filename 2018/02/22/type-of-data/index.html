@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="bolg">
+  <meta name="keyword" content="vuejs">
+  
+    <link rel="shortcut icon" href="/blog/css/images/logo.png">
+  
+  <title>
+    
+      JavaScript 数据类型 以及背后的一些思考 | KuangPF🖖blog
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/blog/css/style.css">
+<link rel="stylesheet" href="/blog/css/plugins/gitment.css">
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/blog/js/qrious.js"></script>
+<script src="/blog/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/blog/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/blog/">
+      <div class="logo"></div>
+      <span>vue</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/blog/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/blog/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div class="page-content" style="min-height:100%">
+    <div id="article-banner">
+        <h2>JavaScript 数据类型 以及背后的一些思考</h2>
+        <p class="post-date">2018-02-22</p>
+        <div class="arrow-down">
+            <a href="javascript:;"></a>
+        </div>
+    </div>
+    <main class="app-body flex-box" style="padding-bottom:70px;margin-top:20px">
+    <!-- Article START -->
+        <article class="post-article">
+            <section class="markdown-content"><p><code>javascript</code>是一种<strong>弱类型</strong>或者说<strong>动态</strong>语言，这意味着你可以先不用提前申明变量的类型，在程序运行过程中，类型会被自动确定。这也意味着你可以使用同一变量保存不同类型的数据:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> foo = <span class="number">18</span>; <span class="comment">// foo is a a Number now</span></span><br><span class="line"><span class="keyword">let</span> foo = <span class="string">'babr'</span>; <span class="comment">// foo is a String now</span></span><br><span class="line"><span class="keyword">let</span> foo = <span class="literal">true</span>; <span class="comment">// foo is a Boolean now</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>最新的 ECMAScript 标准定义了 7 种数据类型:</p>
+<h3 id="6-种-原始类型"><a href="#6-种-原始类型" class="headerlink" title="6 种 原始类型:"></a>6 种 原始类型:</h3><ul>
+<li><a href="#Boolean">Boolean</a></li>
+<li><a href="#Null">Null</a></li>
+<li><a href="#Undefined">Undefined</a></li>
+<li><a href="#Number">Number</a></li>
+<li><a href="#String">String</a></li>
+<li><a href="#Symbol">Symbol (ECMAScript 6 新定义)</a></li>
+</ul>
+<h4 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean"></a>Boolean</h4><blockquote>
+<p>In computer science, a boolean is a logical data type that can have only the values true or false. For example, in JavaScript, boolean conditionals are often used to decide which sections of code to execute (such as in if statements) or repeat (such as in for loops).</p>
+</blockquote>
+<p>上面引用于<a href="https://developer.mozilla.org/en-US/docs/Glossary/Boolean" target="_blank" rel="noopener">MDN</a>,简单来说<code>boolean</code>的值只能是<code>ture</code>或者<code>false</code>。</p>
+<h4 id="Null"><a href="#Null" class="headerlink" title="Null"></a>Null</h4><blockquote>
+<p>In computer science, a null value represents a reference that points, generally intentionally, to a nonexistent or invalid object or address. The meaning of a null reference varies among language implementations.In JavaScript, null is one of the primitive values.</p>
+</blockquote>
+<p>上面引用于<a href="https://developer.mozilla.org/en-US/docs/Glossary/Null" target="_blank" rel="noopener">MDN</a>,<code>null</code>表示”没有对象”，即该处不应该有值</p>
+<h4 id="Undefine"><a href="#Undefine" class="headerlink" title="Undefine"></a>Undefine</h4><blockquote>
+<p>A primitive value automatically assigned to variables that have just been declared or to formal arguments for which there are no actual arguments.</p>
+</blockquote>
+<p>上面引用于<a href="https://developer.mozilla.org/en-US/docs/Glossary/Undefined" target="_blank" rel="noopener">MDN</a>,<code>undefined</code>表示”缺少值”，就是此处应该有一个值，但是还没有定义。</p>
+<h4 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h4><blockquote>
+<p>In JavaScript, Number is a numeric data type in the <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format" target="_blank" rel="noopener">double-precision 64-bit floating point format (IEEE 754)</a>. In other programming languages different numeric types can exist, for examples: Integers, Floats, Doubles, or Bignums.</p>
+</blockquote>
+<p>上面引用于<a href="https://developer.mozilla.org/en-US/docs/Glossary/Number" target="_blank" rel="noopener">MDN</a>,即在J<code>avaScript</code>中，<code>Number</code>是双精度64位浮点格式（IEEE 754）中的数字数据类型。在其他编程语言中，可以存在不同的数字类型，例如：整数，浮点数，双精度或Bignums。</p>
+<h4 id="String"><a href="#String" class="headerlink" title="String"></a>String</h4><blockquote>
+<p>In any computer programming language, a string is a sequence of characters used to represent text.<br>In JavaScript, a String is one of the primitive values and the String object is a wrapper around a String primitive.</p>
+</blockquote>
+<p>上面引用于<a href="https://developer.mozilla.org/en-US/docs/Glossary/String" target="_blank" rel="noopener">MDN</a>,即在任何计算机编程语言中，<code>String</code>都是用来表示文本的字符序列。</p>
+<h4 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h4><blockquote>
+<p>ES6 引入了一种新的原始数据类型Symbol，表示独一无二的值</p>
+</blockquote>
+<p><code>Symbol</code>详细介绍可移步<a href="http://es6.ruanyifeng.com/#docs/symbol" target="_blank" rel="noopener">Symbol</a></p>
+<h3 id="和-Object"><a href="#和-Object" class="headerlink" title="和 Object"></a>和 Object</h3><h4 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h4><blockquote>
+<p>Object refers to a data structure containing data and instructions for working with the data. Objects sometimes refer to real-world things, for example a car or map object in a racing game. JavaScript, Java, C++, Python, and Ruby are examples of object-oriented programming languages.</p>
+</blockquote>
+<p>上面引用于<a href="https://developer.mozilla.org/en-US/docs/Glossary/Object" target="_blank" rel="noopener">MDN</a>,即对象是指包含数据和处理数据的指令的数据结构。</p>
+<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><h3 id="null-与-undefined"><a href="#null-与-undefined" class="headerlink" title="null 与 undefined"></a>null 与 undefined</h3><p>大多数计算机语言，有且仅有一个表示”无”的值，比如，C语言的NULL，Java语言的null，Python语言的None，Ruby语言的nil。<br>有点奇怪的是，JavaScript语言居然有两个表示”无”的值：undefined和null。这是为什么？</p>
+<h4 id="相似性"><a href="#相似性" class="headerlink" title="相似性"></a>相似性</h4><p>在JavaScript中，将一个变量赋值为undefined或null，老实说，几乎没区别。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">let</span> a = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure></p>
+<p>上面代码中，a变量分别被赋值为undefined和null，这两种写法几乎等价。<br>undefined和null在if语句中，都会被自动转为false，相等运算符甚至直接报告两者相等。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="literal">undefined</span>) </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'undefined is false'</span>);</span><br><span class="line"><span class="comment">// undefined is false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="literal">null</span>) </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'null is false'</span>);</span><br><span class="line"><span class="comment">// null is false</span></span><br><span class="line"></span><br><span class="line"><span class="literal">undefined</span> == <span class="literal">null</span></span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>既然undefined和null的含义与用法都差不多，为什么要同时设置两个这样的值，这不是无端增加JavaScript的复杂度，令初学者困扰吗？Google公司开发的JavaScript语言的替代品Dart语言，就明确规定只有null，没有undefined！</p>
+<h4 id="历史原因"><a href="#历史原因" class="headerlink" title="历史原因"></a>历史原因</h4><p>最近，我在读新书《Speaking JavaScript》时，意外发现了这个问题的答案！<br>原来，这与JavaScript的历史有关。1995年JavaScript诞生时，最初像Java一样，只设置了null作为表示”无”的值。<br>根据C语言的传统，null被设计成可以自动转为0。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>(<span class="literal">null</span>)</span><br><span class="line"><span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span> + <span class="literal">null</span></span><br><span class="line"><span class="comment">// 5</span></span><br></pre></td></tr></table></figure></p>
+<p>但是，JavaScript的设计者Brendan Eich，觉得这样做还不够，有两个原因。<br>首先，null像在Java里一样，被当成一个对象。但是，JavaScript的数据类型分成原始类型（primitive）和合成类型（complex）两大类，Brendan Eich觉得表示”无”的值最好不是对象。<br>其次，JavaScript的最初版本没有包括错误处理机制，发生数据类型不匹配时，往往是自动转换类型或者默默地失败。Brendan Eich觉得，如果null自动转为0，很不容易发现错误。<br>因此，Brendan Eich又设计了一个undefined。</p>
+<h4 id="最初设计"><a href="#最初设计" class="headerlink" title="最初设计"></a>最初设计</h4><p>JavaScript的最初版本是这样区分的：null是一个表示”无”的对象，转为数值时为0；undefined是一个表示”无”的原始值，转为数值时为NaN。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>(<span class="literal">undefined</span>)</span><br><span class="line"><span class="comment">// NaN</span></span><br><span class="line"></span><br><span class="line"><span class="number">5</span> + <span class="literal">undefined</span></span><br><span class="line"><span class="comment">// NaN</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="目前的用法"><a href="#目前的用法" class="headerlink" title="目前的用法"></a>目前的用法</h4><p>但是，上面这样的区分，在实践中很快就被证明不可行。目前，null和undefined基本是同义的，只有一些细微的差别。<br>null表示”没有对象”，即该处不应该有值。典型用法是：</p>
+<ul>
+<li>作为函数的参数，表示该函数的参数不是对象。</li>
+<li>作为对象原型链的终点。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.getPrototypeOf(<span class="built_in">Object</span>.prototype)</span><br><span class="line"><span class="comment">// null</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>undefined表示”缺少值”，就是此处应该有一个值，但是还没有定义。典型用法是：</p>
+<ul>
+<li>变量被声明了，但没有赋值时，就等于undefined。</li>
+<li>调用函数时，应该提供的参数没有提供，该参数等于undefined。</li>
+<li>对象没有赋值的属性，该属性的值为undefined。</li>
+<li>函数没有返回值时，默认返回undefined。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i;</span><br><span class="line">i <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;<span class="built_in">console</span>.log(x)&#125;</span><br><span class="line">f() <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span>  o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">o.p <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> x = f();</span><br><span class="line">x <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="与"><a href="#与" class="headerlink" title="== 与 ==="></a>== 与 ===</h3><p>简而言之，在比较两件事情时，双等号将执行类型转换; 三等号将进行相同的比较，而不进行类型转换 (如果类型不同, 只是总会返回 false );</p>
+<h6 id="严格相等"><a href="#严格相等" class="headerlink" title="严格相等 ==="></a>严格相等 ===</h6><p>全等操作符比较两个值是否相等，两个被比较的值在比较前都不进行隐式转换。如果两个被比较的值具有不同的类型，这两个值是不全等的。否则，如果两个被比较的值类型相同，值也相同，并且都不是 number 类型时，两个值全等。最后，如果两个值都是 number 类型，当两个都不是 NaN，并且数值相同，或是两个值分别为 +0 和 -0 时，两个值被认为是全等的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"0"</span>);</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">"0"</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(num === num); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj === obj); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(str === str); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(num === obj); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(num === str); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(obj === str); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">null</span> === <span class="literal">undefined</span>); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(obj === <span class="literal">null</span>); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(obj === <span class="literal">undefined</span>); <span class="comment">// false</span></span><br></pre></td></tr></table></figure></p>
+<p>在日常中使用全等操作符几乎总是正确的选择。对于除了数值之外的值，全等操作符使用明确的语义进行比较：一个值只与自身全等。对于数值，全等操作符使用略加修改的语义来处理两个特殊情况：第一个情况是，浮点数 0 是不分正负的。区分 +0 和 -0 在解决一些特定的数学问题时是必要的，但是大部分情况下我们并不用关心。全等操作符认为这两个值是全等的。第二个情况是，浮点数包含了 NaN 值，用来表示某些定义不明确的数学问题的解，例如：正无穷加负无穷。全等操作符认为 NaN 与其他任何值都不全等，包括它自己。（等式 (x !== x) 成立的唯一情况是 x 的值为 NaN）</p>
+<h6 id="非严格相等"><a href="#非严格相等" class="headerlink" title="非严格相等 =="></a>非严格相等 ==</h6><p>相等操作符比较两个值是否相等，在比较前将两个被比较的值转换为相同类型。在转换后（等式的一边或两边都可能被转换），最终的比较方式等同于全等操作符 === 的比较方式。 相等操作符满足交换律。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"0"</span>);</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">"0"</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(num === num); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj === obj); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(str === str); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(num == obj); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(num == str); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj == str); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">null</span> == <span class="literal">undefined</span>); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj == <span class="literal">null</span>); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(obj == <span class="literal">undefined</span>); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p class="tip">还有一种比较方法:<code>Object.is</code>,Object.is的行为方式与三等号相同，但是对于NaN进行特殊处理，所以最后两个不相同，而Object.is（NaN，NaN）将为 true。</p>
+
+<ul>
+<li>参考 <a href="http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html" target="_blank" rel="noopener">undefined与null的区别</a></li>
+<li>参考 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Equality_comparisons_and_sameness" target="_blank" rel="noopener">JavaScript 中的相等性判断</a></li>
+</ul>
+</section>
+            <!-- Tags START -->
+            
+                <div class="tags">
+                    <span>Tags:</span>
+                    
+  <a href="/blog/tags#javascript" >
+    <span class="tag-code">javascript</span>
+  </a>
+
+  <a href="/blog/tags#面试" >
+    <span class="tag-code">面试</span>
+  </a>
+
+
+
+                </div>
+            
+            <!-- Tags END -->
+            <!-- view Start -->
+            <div class="article-view">
+                <span id="busuanzi_container_page_pv">浏览量
+                    <i class="fa fa-eye" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                </span>
+            </div>
+            <!-- view END -->
+            <!-- 打赏 START -->
+            
+            <!-- 打赏 END -->
+            <!-- 二维码 START -->
+            
+            <div class="qrcode">
+                <canvas id="share-qrcode"></canvas>
+                <p class="notice">扫描二维码，分享此文章</p>
+            </div>
+            
+            <!-- 二维码 END -->
+            
+                <!-- Gitment START -->
+                <div id="container"></div>
+                <!-- Gitment END -->
+                
+        </article>
+        <!-- Article END -->
+        <!-- Catalog START -->
+        
+            <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#数据类型"><span class="toc-nav-text">数据类型</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#6-种-原始类型"><span class="toc-nav-text">6 种 原始类型:</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Boolean"><span class="toc-nav-text">Boolean</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Null"><span class="toc-nav-text">Null</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Undefine"><span class="toc-nav-text">Undefine</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Number"><span class="toc-nav-text">Number</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#String"><span class="toc-nav-text">String</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Symbol"><span class="toc-nav-text">Symbol</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#和-Object"><span class="toc-nav-text">和 Object</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Object"><span class="toc-nav-text">Object</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#拓展"><span class="toc-nav-text">拓展</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#null-与-undefined"><span class="toc-nav-text">null 与 undefined</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#相似性"><span class="toc-nav-text">相似性</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#历史原因"><span class="toc-nav-text">历史原因</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#最初设计"><span class="toc-nav-text">最初设计</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#目前的用法"><span class="toc-nav-text">目前的用法</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#与"><span class="toc-nav-text">== 与 ===</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#严格相等"><span class="toc-nav-text">严格相等 ===</span></a></li><li class="toc-nav-item toc-nav-level-6"><a class="toc-nav-link" href="#非严格相等"><span class="toc-nav-text">非严格相等 ==</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+        
+        <!-- Catalog END -->
+    </main>
+</div>
+
+<script>
+  (function () {
+    var url = 'https://kuangpf.github.io/blog/2018/02/22/type-of-data/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    var gitment = new Gitment({
+        id: 'JavaScript 数据类型 以及背后的一些思考', // 可选。默认为 location.href
+        owner: 'KuangPF',
+        repo: 'blog',
+        oauth: {
+            client_id: 'b72ce2d9cb2b8c5175a5',
+            client_secret: 'ed963635170152c37f7c7c087049f00d01055b6c',
+        },
+    })
+    gitment.render('container')
+    // gitment
+    /* var gitmentConfig = "KuangPF";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "JavaScript 数据类型 以及背后的一些思考",
+        owner: "KuangPF",
+        repo: "bolg",
+        oauth: {
+          client_id: "b72ce2d9cb2b8c5175a5",
+          client_secret: "ed963635170152c37f7c7c087049f00d01055b6c"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    } */
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | powered by <a href="https://hexo.io" target="_blank">Hexo</a><span id="busuanzi_container_site_pv">
+     | Views:<span id="busuanzi_value_site_pv"></span>
+    </span>
+    <br>
+    Own by <a href="https://github.com/KuangPF">KuangPF</a>
+  </p>
+ 
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/blog/js/script.js"></script>
+  </body>
+</html>

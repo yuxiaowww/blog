@@ -10,7 +10,7 @@
   
   <title>
     
-      vue 组件间通信 | vue
+      vue 组件间通信 | KuangPF🖖blog
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -125,7 +125,7 @@
     <!-- Article START -->
         <article class="post-article">
             <section class="markdown-content"><p>最近在学习vue方面的的知识，毫无疑问，对于vue来说，组件化是其一个很大的特点，一方面可以提高代码的可读性，另一方面可以少写很多的代码，利于代码的维护。对于组件之间数据通信是一个必须要掌握的知识点，通信之间的方式一共可以分为三种，父组件与子组件，子组件与父组件，同级组件间通信。</p>
-<h3 id="父组件与子组件"><a href="#父组件与子组件" class="headerlink" title="父组件与子组件"></a>父组件与子组件</h3><p>在vue中，父子组件的关系可以总结为 prop 向下传递，事件向上传递。父组件通过 prop 给子组件下发数据，子组件通过事件给父组件发送消息。<br><img src="/img/vue-components-bus-01.png"><br>父组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt; </span><br><span class="line">     &lt;div class=&quot;components-bus-container&quot;&gt;</span><br><span class="line">        &lt;children-one :fatherDataOne=&quot;fatherDataOne&quot;&gt;&lt;/children-one&gt;</span><br><span class="line">     &lt;/div&gt; </span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            fatherDataOne: &apos;&apos;,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="父组件与子组件"><a href="#父组件与子组件" class="headerlink" title="父组件与子组件"></a>父组件与子组件</h3><p>在vue中，父子组件的关系可以总结为 prop 向下传递，事件向上传递。父组件通过 prop 给子组件下发数据，子组件通过事件给父组件发送消息。<br><img src="/blog/img/vue-components-bus-01.png"><br>父组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt; </span><br><span class="line">     &lt;div class=&quot;components-bus-container&quot;&gt;</span><br><span class="line">        &lt;children-one :fatherDataOne=&quot;fatherDataOne&quot;&gt;&lt;/children-one&gt;</span><br><span class="line">     &lt;/div&gt; </span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            fatherDataOne: &apos;&apos;,</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
 <p>子组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div class=&quot;children-one-content&quot;&gt;</span><br><span class="line">        &lt;div&gt;&#123;&#123;fatherDataOne&#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">    &#125;,</span><br><span class="line">    props: [&apos;fatherDataOne&apos;]</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
 <p></p><p class="tip"><code>:fatherDataOne</code>为数据绑定写法，可以灵活的进行数据设置，如果直接绑定数据，写成<code>fatherDataOne=&quot;someData&quot;</code>即可</p><p></p>
 <h3 id="子组件与父组件通信"><a href="#子组件与父组件通信" class="headerlink" title="子组件与父组件通信"></a>子组件与父组件通信</h3><p>对于子组件将数据传给父组件，是通过<code>$emit</code>事件来实现的，在图中也可以体现，具体实现如下：<br>子组件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div class=&quot;children-one-content&quot;&gt;</span><br><span class="line">        &lt;div&gt;&#123;&#123;fatherDataOne&#125;&#125;&lt;/div&gt;</span><br><span class="line">        &lt;div @click=&quot;tellParent&quot;&gt;点击传递数据&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">    &#125;,</span><br><span class="line">    props: [&apos;fatherDataOne&apos;]，</span><br><span class="line">    methods: &#123;</span><br><span class="line">        tellParent() &#123;</span><br><span class="line">          this.$emit(&apos;listenOne&apos;, &apos;from childrenOne&apos;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
@@ -149,9 +149,11 @@
                 <div class="tags">
                     <span>Tags:</span>
                     
-  <a href="/blog/blog/tags#vue" >
+  <a href="/blog/tags#vue" >
     <span class="tag-code">vue</span>
   </a>
+
+
 
                 </div>
             
@@ -176,7 +178,6 @@
             <!-- 二维码 END -->
             
                 <!-- Gitment START -->
-                <div id="comments"></div>
                 <div id="container"></div>
                 <!-- Gitment END -->
                 
@@ -199,7 +200,7 @@
 
 <script>
   (function () {
-    var url = 'https://kuangpf.github.io/blog/2018/02/08/vue-组件间通信/';
+    var url = 'https://kuangpf.github.io/blog/2018/02/08/vue-component-communication/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -252,12 +253,12 @@
     });
 
     var gitment = new Gitment({
-        /* id: '页面 ID', // 可选。默认为 location.href */
+        id: 'vue 组件间通信', // 可选。默认为 location.href
         owner: 'KuangPF',
         repo: 'blog',
         oauth: {
-            client_id: 'c3e4aa2ce93f644ca3dc',
-            client_secret: '5354b1e59a5cf69b941879c458dd759640823a17',
+            client_id: 'b72ce2d9cb2b8c5175a5',
+            client_secret: 'ed963635170152c37f7c7c087049f00d01055b6c',
         },
     })
     gitment.render('container')
@@ -269,8 +270,8 @@
         owner: "KuangPF",
         repo: "bolg",
         oauth: {
-          client_id: "c3e4aa2ce93f644ca3dc",
-          client_secret: "5354b1e59a5cf69b941879c458dd759640823a17"
+          client_id: "b72ce2d9cb2b8c5175a5",
+          client_secret: "ed963635170152c37f7c7c087049f00d01055b6c"
         },
         theme: {
           render(state, instance) {

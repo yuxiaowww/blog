@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="bolg">
+  <meta name="keyword" content="vuejs">
+  
+    <link rel="shortcut icon" href="/blog/css/images/logo.png">
+  
+  <title>
+    
+      CSS 基础面试 | KuangPF🖖blog
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/blog/css/style.css">
+<link rel="stylesheet" href="/blog/css/plugins/gitment.css">
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/blog/js/qrious.js"></script>
+<script src="/blog/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/blog/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/blog/">
+      <div class="logo"></div>
+      <span>vue</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/blog/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/blog/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div class="page-content" style="min-height:100%">
+    <div id="article-banner">
+        <h2>CSS 基础面试</h2>
+        <p class="post-date">2018-02-24</p>
+        <div class="arrow-down">
+            <a href="javascript:;"></a>
+        </div>
+    </div>
+    <main class="app-body flex-box" style="padding-bottom:70px;margin-top:20px">
+    <!-- Article START -->
+        <article class="post-article">
+            <section class="markdown-content"><h4 id="1-CSS-盒子模型"><a href="#1-CSS-盒子模型" class="headerlink" title="1. CSS 盒子模型"></a>1. CSS 盒子模型</h4><p>在一个文档中，每个<strong>元素</strong>都被表示为一个<strong>矩形</strong>的盒子。确定这些盒子的尺寸, 属性 — 像它的颜色，背景，边框方面 — 和位置是渲染引擎的标。<br>在 CSS 中使用标准的<strong>盒模型</strong>来描述这些矩形盒子中的每一个，这个模型描述了元素所占空间的内容。每个盒子有四个边：<strong>外边距边</strong>, <strong>边框边</strong>, <strong>内填充边</strong> 与 <strong>内容边</strong>。分别对应CSS中的 <strong>margin</strong> <strong>border</strong> <strong>padding</strong> <strong>content</strong>。<br><img src="/blog/img/css-interview/boxmodel.png"><br>或者可以这样描述: 宽度(width)=内容的宽度(content) + padding + border + margin</p>
+<p class="tip">上面描述的是标准的盒子模型，当然还有低版本IE盒子模型，它可以进行这样描述:宽度(width)=内容的宽度(content+ padding + border) + margin，两者的区别可以很明显的看出。</p>
+
+<h4 id="2-box-sizing-属性"><a href="#2-box-sizing-属性" class="headerlink" title="2. box-sizing 属性"></a>2. box-sizing 属性</h4><p><strong>box-sizing</strong>在开发中很常见，它是盒子模型的解析模式,她有两个值：content-box和border-box,默认为content-box</p>
+<ul>
+<li><strong>content-box</strong>: 标准的W3C盒子模型，设置元素的height/width属性指的是conent部分的height/width</li>
+<li><strong>border-box</strong>: IE传统盒子模型，设置元素的height/width属性指的是border+padding+content部分的height/width</li>
+</ul>
+<blockquote>
+<p>这个属性很实用，比如你想将一个div的宽度设置为100%，然后又想加一个padding，如果不将box-sizing设置为border-box，那么这个div就会溢出，反之就是你想要的效果。</p>
+</blockquote>
+<h4 id="3-CSS-选择器"><a href="#3-CSS-选择器" class="headerlink" title="3. CSS 选择器"></a>3. CSS 选择器</h4><p>在 CSS 中，选择器是一种模式，用于选择需要添加样式的元素。</p>
+<table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>例子</th>
+<th>例子描述</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.class</td>
+<td>.info</td>
+<td>选择 class=”info” 的所有元素。</td>
+<td>1</td>
+</tr>
+<tr>
+<td>#id</td>
+<td>#idName</td>
+<td>选择 id=”idName” 的所有元素。</td>
+<td>1</td>
+</tr>
+<tr>
+<td>*</td>
+<td>*</td>
+<td>选择所有元素。</td>
+<td>2</td>
+</tr>
+<tr>
+<td>element</td>
+<td>p</td>
+<td>选择 所有<code>&lt;p&gt;</code>元素。</td>
+<td>1</td>
+</tr>
+<tr>
+<td>element,element</td>
+<td>div,p</td>
+<td>选择所有<code>&lt;div&gt;</code>元素和所有 <code>&lt;p&gt;</code> 元素。</td>
+<td>1</td>
+</tr>
+<tr>
+<td>element element</td>
+<td>div p</td>
+<td>选择 <code>&lt;div&gt;</code> 元素内部的所有 <code>&lt;p&gt;</code> 元素。</td>
+<td>1</td>
+</tr>
+<tr>
+<td>element&gt;element</td>
+<td>div&gt;p</td>
+<td>选择所有父元素为<code>div</code>的<code>p</code>元素</td>
+<td>2</td>
+</tr>
+<tr>
+<td>element+element</td>
+<td>div+p</td>
+<td>选择紧接着<code>div</code>元素之后的所有<code>p</code>元素</td>
+<td>2</td>
+</tr>
+<tr>
+<td>[attribute]</td>
+<td>[target]</td>
+<td>选择带有 target 属性所有元素。</td>
+<td>2</td>
+</tr>
+<tr>
+<td>[attribute=value]</td>
+<td>[target=_blank]</td>
+<td>选择 target=”_blank” 的所有元素。</td>
+<td>2</td>
+</tr>
+<tr>
+<td>:link</td>
+<td>a:link</td>
+<td>选择所有未被访问的链接。</td>
+<td>1</td>
+</tr>
+<tr>
+<td>:first-letter</td>
+<td>p:first-letter</td>
+<td>选择每个 <code>&lt;p&gt;</code> 元素的首字母。。</td>
+<td>1</td>
+</tr>
+<tr>
+<td>:before</td>
+<td>p:before</td>
+<td>在每个 <code>&lt;p&gt;</code> 元素的内容之前插入内容。</td>
+<td>2</td>
+</tr>
+<tr>
+<td>:first-of-type</td>
+<td>p:first-of-type</td>
+<td>选择属于其父元素的首个 <code>&lt;p&gt;</code> 元素。</td>
+<td>3</td>
+</tr>
+<tr>
+<td>:not(selector)</td>
+<td>:not(p)</td>
+<td>选择非 <code>&lt;p&gt;</code> 元素的每个元素。</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p class="tip">上面这些选择器是一些比较常见的选择器，其中也包含了一些CSS3中的新的选择器。<a href="http://www.w3school.com.cn/cssref/css_selectors.ASP" target="_blank" rel="noopener">更多选择器</a></p>
+
+<h4 id="4-CSS-哪些属性可以继承"><a href="#4-CSS-哪些属性可以继承" class="headerlink" title="4. CSS 哪些属性可以继承"></a>4. CSS 哪些属性可以继承</h4><p>CSS 可继承的属性有:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* <span class="selector-tag">font-size</span> </span><br><span class="line">* <span class="selector-tag">font-family</span> </span><br><span class="line">* <span class="selector-tag">color</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="5-CSS3新增伪类有那些"><a href="#5-CSS3新增伪类有那些" class="headerlink" title="5. CSS3新增伪类有那些"></a>5. CSS3新增伪类有那些</h4><ul>
+<li>p:first-of-type 选择其父元素的首个<code>&lt;p&gt;</code>元素</li>
+<li>p:first-of-type 选择其父元素的最后一个<code>&lt;p&gt;</code>元素</li>
+<li>p:only-of-type 选择属于其父元素唯一的元素</li>
+<li>p:only-child 选择属于其父元素的唯一子元素</li>
+<li>p:nth-child(2) 选择属于其父元素的第二个子元素</li>
+<li>:enabled :disabled 表单控件的禁用状态。</li>
+<li>:checked 单选框或复选框被选中。</li>
+</ul>
+<h4 id="6-CSS3有哪些新特性？"><a href="#6-CSS3有哪些新特性？" class="headerlink" title="6. CSS3有哪些新特性？"></a>6. CSS3有哪些新特性？</h4><ul>
+<li>RGBA和透明度</li>
+<li>background-image background-origin(content-box/padding-box/border-box) background-size background-repeat</li>
+<li>word-wrap（对长的不可分割单词换行）word-wrap：break-word</li>
+<li>文字阴影：text-shadow： 5px 5px 5px #FF0000;（水平阴影，垂直阴影，模糊距离，阴影颜色）</li>
+<li>font-face属性：定义自己的字体</li>
+<li>圆角（边框半径）：border-radius 属性用于创建圆角</li>
+<li>边框图片：border-image: url(border.png) 30 30 round</li>
+<li>盒阴影：box-shadow: 10px 10px 5px #888888</li>
+<li>媒体查询：定义两套css，当浏览器的尺寸变化时会采用不同的属性</li>
+</ul>
+<h4 id="7-用纯CSS创建一个三角形的原理"><a href="#7-用纯CSS创建一个三角形的原理" class="headerlink" title="7. 用纯CSS创建一个三角形的原理"></a>7. 用纯CSS创建一个三角形的原理</h4><p>首先将其宽度和高度设置为0，然后再设置其边框的样式。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">width</span>: 0;</span><br><span class="line"><span class="selector-tag">height</span>: 0;</span><br><span class="line"><span class="selector-tag">border-top</span>: 50<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">transparent</span>;</span><br><span class="line"><span class="selector-tag">border-left</span>: 50<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">transparent</span>;</span><br><span class="line"><span class="selector-tag">border-right</span>: 50<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">transparent</span>;</span><br><span class="line"><span class="selector-tag">border-bottom</span>: 50<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#00ff00</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="8-清除浮动"><a href="#8-清除浮动" class="headerlink" title="8. 清除浮动"></a>8. 清除浮动</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span> &#123;</span><br><span class="line">  <span class="attribute">zoom</span>:<span class="number">1</span></span><br><span class="line">  &amp;::after &#123;</span><br><span class="line">    content: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">visibility</span>: hidden;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="9-移动端布局的媒体查询"><a href="#9-移动端布局的媒体查询" class="headerlink" title="9. 移动端布局的媒体查询"></a>9. 移动端布局的媒体查询</h4><p>通过媒体查询可以为不同大小和尺寸的媒体定义不同的css，适应相应的设备的显示。</p>
+<ul>
+<li><p><head></head>里面</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"xxx.css"</span> <span class="attr">media</span>=<span class="string">"only screen and (max-device-width:480px)"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CSS</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">: @media only screen and (max-device-width:480px) &#123;/css样式/&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="10-before-和-after中双冒号和单冒号的区别"><a href="#10-before-和-after中双冒号和单冒号的区别" class="headerlink" title="10.  ::before 和 :after中双冒号和单冒号的区别"></a>10.  ::before 和 :after中双冒号和单冒号的区别</h4><p>1.单冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素<br>2.::before就是以一个子元素的存在，定义在元素主体内容之前的一个伪元素。并不存在于dom之中，只存在在页面之中。<br>:before 和 :after 这两个伪元素，是在CSS2.1里新出现的。起初，伪元素的前缀使用的是单冒号语法，但随着Web的进化，在CSS3的规范里，伪元素的语法被修改成使用双冒号，成为::before ::after</p>
+<h4 id="11-png、jpg、gif、webp图片格式"><a href="#11-png、jpg、gif、webp图片格式" class="headerlink" title="11. png、jpg、gif、webp图片格式"></a>11. png、jpg、gif、webp图片格式</h4><ul>
+<li>png是便携式网络图片（Portable Network Graphics）是一种无损数据压缩位图文件格式.优点是：压缩比高，色彩好。 大多数地方都可以用。</li>
+<li>jpg是一种针对相片使用的一种失真压缩方法，是一种破坏性的压缩，在色调及颜色平滑变化做的不错。在www上，被用来储存和传输照片的格式。</li>
+<li>gif是一种位图文件格式，以8位色重现真色彩的图像。可以实现动画效果.</li>
+<li>webp格式是谷歌在2010年推出的图片格式，压缩率只有jpg的2/3，大小比png小了45%。缺点是压缩的时间更久了，兼容性不好，目前谷歌和opera支持。</li>
+</ul>
+<h5 id="持续更新中…"><a href="#持续更新中…" class="headerlink" title="持续更新中…."></a>持续更新中….</h5></section>
+            <!-- Tags START -->
+            
+                <div class="tags">
+                    <span>Tags:</span>
+                    
+  <a href="/blog/tags#CSS" >
+    <span class="tag-code">CSS</span>
+  </a>
+
+  <a href="/blog/tags#面试" >
+    <span class="tag-code">面试</span>
+  </a>
+
+
+
+                </div>
+            
+            <!-- Tags END -->
+            <!-- view Start -->
+            <div class="article-view">
+                <span id="busuanzi_container_page_pv">浏览量
+                    <i class="fa fa-eye" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                </span>
+            </div>
+            <!-- view END -->
+            <!-- 打赏 START -->
+            
+            <!-- 打赏 END -->
+            <!-- 二维码 START -->
+            
+            <div class="qrcode">
+                <canvas id="share-qrcode"></canvas>
+                <p class="notice">扫描二维码，分享此文章</p>
+            </div>
+            
+            <!-- 二维码 END -->
+            
+                <!-- Gitment START -->
+                <div id="container"></div>
+                <!-- Gitment END -->
+                
+        </article>
+        <!-- Article END -->
+        <!-- Catalog START -->
+        
+            <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1-CSS-盒子模型"><span class="toc-nav-text">1. CSS 盒子模型</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2-box-sizing-属性"><span class="toc-nav-text">2. box-sizing 属性</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#3-CSS-选择器"><span class="toc-nav-text">3. CSS 选择器</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#4-CSS-哪些属性可以继承"><span class="toc-nav-text">4. CSS 哪些属性可以继承</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#5-CSS3新增伪类有那些"><span class="toc-nav-text">5. CSS3新增伪类有那些</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#6-CSS3有哪些新特性？"><span class="toc-nav-text">6. CSS3有哪些新特性？</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#7-用纯CSS创建一个三角形的原理"><span class="toc-nav-text">7. 用纯CSS创建一个三角形的原理</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#8-清除浮动"><span class="toc-nav-text">8. 清除浮动</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#9-移动端布局的媒体查询"><span class="toc-nav-text">9. 移动端布局的媒体查询</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#10-before-和-after中双冒号和单冒号的区别"><span class="toc-nav-text">10.  ::before 和 :after中双冒号和单冒号的区别</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#11-png、jpg、gif、webp图片格式"><span class="toc-nav-text">11. png、jpg、gif、webp图片格式</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#持续更新中…"><span class="toc-nav-text">持续更新中….</span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+        
+        <!-- Catalog END -->
+    </main>
+</div>
+
+<script>
+  (function () {
+    var url = 'https://kuangpf.github.io/blog/2018/02/24/css-interview/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    var gitment = new Gitment({
+        id: 'CSS 基础面试', // 可选。默认为 location.href
+        owner: 'KuangPF',
+        repo: 'blog',
+        oauth: {
+            client_id: 'b72ce2d9cb2b8c5175a5',
+            client_secret: 'ed963635170152c37f7c7c087049f00d01055b6c',
+        },
+    })
+    gitment.render('container')
+    // gitment
+    /* var gitmentConfig = "KuangPF";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "CSS 基础面试",
+        owner: "KuangPF",
+        repo: "bolg",
+        oauth: {
+          client_id: "b72ce2d9cb2b8c5175a5",
+          client_secret: "ed963635170152c37f7c7c087049f00d01055b6c"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    } */
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | powered by <a href="https://hexo.io" target="_blank">Hexo</a><span id="busuanzi_container_site_pv">
+     | Views:<span id="busuanzi_value_site_pv"></span>
+    </span>
+    <br>
+    Own by <a href="https://github.com/KuangPF">KuangPF</a>
+  </p>
+ 
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/blog/js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="bolg">
+  <meta name="keyword" content="vuejs">
+  
+    <link rel="shortcut icon" href="/blog/css/images/logo.png">
+  
+  <title>
+    
+      面向对象版块之理解对象 | KuangPF🖖blog
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/blog/css/style.css">
+<link rel="stylesheet" href="/blog/css/plugins/gitment.css">
+  <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+  <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/blog/js/qrious.js"></script>
+<script src="/blog/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/blog/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/blog/">
+      <div class="logo"></div>
+      <span>vue</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/blog/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/blog/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/blog/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/blog/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div class="page-content" style="min-height:100%">
+    <div id="article-banner">
+        <h2>面向对象版块之理解对象</h2>
+        <p class="post-date">2018-03-02</p>
+        <div class="arrow-down">
+            <a href="javascript:;"></a>
+        </div>
+    </div>
+    <main class="app-body flex-box" style="padding-bottom:70px;margin-top:20px">
+    <!-- Article START -->
+        <article class="post-article">
+            <section class="markdown-content"><p>这是 <code>javascript</code> 面向对象版块的第一篇文章，主要讲解对面向对象思想的一个理解。<br>先说说什么是对象，其实这个还真的不好说。我们可以把自己当成一个对象，或者过年的时候相亲，找对象，那么你未来的老婆也是一个对象。我们就要一些属性，比如我们的名字，年龄。我们还有一些可以做的事情，比如看电影，玩手机等等，其实这就是对象,然后描述的年龄以及看电影这些就是对象的属性。<br>我们说<code>javascript</code>是一种面向对象的语言，那什么又是面向对象呢？</p>
+<p class="tip">其实我们在理解这些概念的时候有时候真的要刨根究底地去看看，真正的理解他们所要表达的意思，这样才会将知识点记得很清楚。</p>
+
+<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p><strong>举个例子</strong>:<br>五一节快到了，你们全家都想去国外玩一下，首先你们需要确定去哪儿，然后再决定怎么去(跟团，或者自由行),然后需要带一些什么零食在路上(水，薯片，牙土豆等等)，然后你们在当天去机场怎么去(滴滴出行或者坐地铁)，然后你们就可以飞到国外。突然，你爸说，搞这些东西好复杂呀，不如我们叫一个秘书来整理这一切吧(前提是要有一个秘书哈),然后我们就直接负责到国外就行，接着你们都不用管关于旅行的事了然后愉快的开始玩吃鸡。<br>其实这就是一个面向对象。你不需要知道怎么去国外，整个过程你不用管，你所要关心的就是安全到达国外就可以，而这个过程就交给了你爸爸的秘书这个对象来完成了。所以我们面向的就是对象(你爸爸的秘书),这就是面向对象的思想。<br>用代码可以这样描述:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TravelAbroad</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.travelMode = <span class="string">'Free-Exercise'</span>;</span><br><span class="line">  <span class="keyword">this</span>.food = [<span class="string">'water'</span>, <span class="string">'Potato chips'</span>, <span class="string">'Tooth potatoes'</span>];</span><br><span class="line">  <span class="keyword">this</span>.transportationWay = <span class="string">'didi'</span>;</span><br><span class="line">  <span class="keyword">this</span>.goAirport = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'we go to ariport by'</span> + <span class="keyword">this</span>.transportationWay);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">this</span>.goAbroad = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// some code before arrive abroad</span></span><br><span class="line">    <span class="keyword">this</span>.goAirport();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'安全到达国外'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> personFather = <span class="keyword">new</span> TravelAbroad();</span><br><span class="line">personFather.goAbroad();</span><br></pre></td></tr></table></figure>
+<h3 id="面向过程"><a href="#面向过程" class="headerlink" title="面向过程"></a>面向过程</h3><p>既然说了<strong>面向对象</strong>，那么与之对应的就是<strong>面向过程</strong>。其实面向过程相比面向对象来说就很好理解了，比如上诉例子中，你爸爸的秘书做的事情就是面向过程，然后用代码解释就是，在函数执行过程中，要实现一个一个的功能就是执行一个一个的函数模块。最熟悉的<code>C</code>语言就是一种面向过程的语言。</p>
+<p class="tip"> 面向过程是一件事“该怎么做“，面向对象是一件事“该让谁来做”，然后那个“谁”就是对象，他要怎么做是他自己的事，反正最后一群对象合力能把事做好就行了。</p>
+
+<h3 id="javascript-的面向对象"><a href="#javascript-的面向对象" class="headerlink" title="javascript 的面向对象"></a>javascript 的面向对象</h3><p>面向对象（Object-Oriented，OO）的语言有一个标志，那就是它们都有类的概念，而通过类可以创建任意多个具有相同属性和方法的对象。但是在ECMAScript 中没有类的概念，因此它的对象也与基于类的语言中的对象有所不同。<br>ECMA-262 把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数。”严格来讲，这就相当于说对象是一组没有特定顺序的值。对象的每个属性或方法都有一个名字，而每个名字都映射到一个值。正因为这样，我们可以把 ECMAScript 的对象想象成散列表：无非就是一组名值对，其中值可以是数据或函数。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>在这篇文章中，介绍了什么是面向对象和面向过程，以及<code>javascript</code>中对象的含义。在下篇文章中将要介绍一些对象属性方面的知识。如果文章有错误还望各位大佬提出，一起节流学习。</p>
+<p>下一篇: <a href="https://kuangpf.github.io/blog/2018/03/02/javascript-object-properties/">javascript 面向对象版块之对象属性</a><br>上一篇: <a href="https://kuangpf.github.io/blog/2018/03/02/javascript-object-oriented/">javascript 面向对象的程序设计</a></p>
+</section>
+            <!-- Tags START -->
+            
+                <div class="tags">
+                    <span>Tags:</span>
+                    
+  <a href="/blog/tags#javascript" >
+    <span class="tag-code">javascript</span>
+  </a>
+
+  <a href="/blog/tags#object" >
+    <span class="tag-code">object</span>
+  </a>
+
+
+
+                </div>
+            
+            <!-- Tags END -->
+            <!-- view Start -->
+            <div class="article-view">
+                <span id="busuanzi_container_page_pv">浏览量
+                    <i class="fa fa-eye" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                </span>
+            </div>
+            <!-- view END -->
+            <!-- 打赏 START -->
+            
+            <!-- 打赏 END -->
+            <!-- 二维码 START -->
+            
+            <div class="qrcode">
+                <canvas id="share-qrcode"></canvas>
+                <p class="notice">扫描二维码，分享此文章</p>
+            </div>
+            
+            <!-- 二维码 END -->
+            
+                <!-- Gitment START -->
+                <div id="container"></div>
+                <!-- Gitment END -->
+                
+        </article>
+        <!-- Article END -->
+        <!-- Catalog START -->
+        
+            <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#面向对象"><span class="toc-nav-text">面向对象</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#面向过程"><span class="toc-nav-text">面向过程</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#javascript-的面向对象"><span class="toc-nav-text">javascript 的面向对象</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#小结"><span class="toc-nav-text">小结</span></a></li></ol>
+    
+  </div>
+</aside>
+        
+        <!-- Catalog END -->
+    </main>
+</div>
+
+<script>
+  (function () {
+    var url = 'https://kuangpf.github.io/blog/2018/03/02/javascript-understand-object/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    var gitment = new Gitment({
+        id: '面向对象版块之理解对象', // 可选。默认为 location.href
+        owner: 'KuangPF',
+        repo: 'blog',
+        oauth: {
+            client_id: 'b72ce2d9cb2b8c5175a5',
+            client_secret: 'ed963635170152c37f7c7c087049f00d01055b6c',
+        },
+    })
+    gitment.render('container')
+    // gitment
+    /* var gitmentConfig = "KuangPF";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "面向对象版块之理解对象",
+        owner: "KuangPF",
+        repo: "bolg",
+        oauth: {
+          client_id: "b72ce2d9cb2b8c5175a5",
+          client_secret: "ed963635170152c37f7c7c087049f00d01055b6c"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    } */
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<footer class="app-footer">
+  <p class="copyright">
+    &copy; 2018 | powered by <a href="https://hexo.io" target="_blank">Hexo</a><span id="busuanzi_container_site_pv">
+     | Views:<span id="busuanzi_value_site_pv"></span>
+    </span>
+    <br>
+    Own by <a href="https://github.com/KuangPF">KuangPF</a>
+  </p>
+ 
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/blog/js/script.js"></script>
+  </body>
+</html>
