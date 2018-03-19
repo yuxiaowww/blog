@@ -10,7 +10,7 @@
   
   <title>
     
-      面向对象版块之理解对象 | KuangPF🖖blog
+      用 vue 写小程序，基于 mpvue 框架重写 weui | KuangPF🖖blog
     
   </title>
   <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -35,37 +35,37 @@
   <div class="header-container">
     <a class="home-link" href="/blog/">
       <div class="logo"></div>
-      <span>vue</span>
+      <span>FE-blog</span>
     </a>
     <ul class="right-list">
       
         <li class="list-item">
           
-            <a href="/blog/" class="item-link">Home</a>
+            <a href="/blog/" class="item-link">首页</a>
           
         </li>
       
         <li class="list-item">
           
-            <a href="/blog/tags/" class="item-link">Tags</a>
+            <a href="/blog/tags/" class="item-link">标签</a>
           
         </li>
       
         <li class="list-item">
           
-            <a href="/blog/archives/" class="item-link">Archives</a>
+            <a href="/blog/archives/" class="item-link">归档</a>
           
         </li>
       
         <li class="list-item">
           
-            <a href="/blog/project/" class="item-link">Projects</a>
+            <a href="/blog/project/" class="item-link">开源项目</a>
           
         </li>
       
         <li class="list-item">
           
-            <a href="/blog/about/" class="item-link">About</a>
+            <a href="/blog/about/" class="item-link">关于</a>
           
         </li>
       
@@ -80,31 +80,31 @@
         
           <li class="menu-item">
             
-              <a href="/blog/" class="menu-link">Home</a>
+              <a href="/blog/" class="menu-link">首页</a>
             
           </li>
         
           <li class="menu-item">
             
-              <a href="/blog/tags/" class="menu-link">Tags</a>
+              <a href="/blog/tags/" class="menu-link">标签</a>
             
           </li>
         
           <li class="menu-item">
             
-              <a href="/blog/archives/" class="menu-link">Archives</a>
+              <a href="/blog/archives/" class="menu-link">归档</a>
             
           </li>
         
           <li class="menu-item">
             
-              <a href="/blog/project/" class="menu-link">Projects</a>
+              <a href="/blog/project/" class="menu-link">开源项目</a>
             
           </li>
         
           <li class="menu-item">
             
-              <a href="/blog/about/" class="menu-link">About</a>
+              <a href="/blog/about/" class="menu-link">关于</a>
             
           </li>
         
@@ -115,8 +115,8 @@
 
     <div class="page-content" style="min-height:100%">
     <div id="article-banner">
-        <h2>面向对象版块之理解对象</h2>
-        <p class="post-date">2018-03-02</p>
+        <h2>用 vue 写小程序，基于 mpvue 框架重写 weui</h2>
+        <p class="post-date">2018-03-20</p>
         <div class="arrow-down">
             <a href="javascript:;"></a>
         </div>
@@ -124,29 +124,41 @@
     <main class="app-body flex-box" style="padding-bottom:70px;margin-top:20px">
     <!-- Article START -->
         <article class="post-article">
-            <section class="markdown-content"><p>这是 <code>javascript</code> 面向对象版块的第一篇文章，主要讲解对面向对象思想的一个理解。<br>先说说什么是对象，其实这个还真的不好说。我们可以把自己当成一个对象，或者过年的时候相亲，找对象，那么你未来的老婆也是一个对象。我们就要一些属性，比如我们的名字，年龄。我们还有一些可以做的事情，比如看电影，玩手机等等，其实这就是对象,然后描述的年龄以及看电影这些就是对象的属性。<br>我们说<code>javascript</code>是一种面向对象的语言，那什么又是面向对象呢？</p>
-<p class="tip">其实我们在理解这些概念的时候有时候真的要刨根究底地去看看，真正的理解他们所要表达的意思，这样才会将知识点记得很清楚。</p>
-
-<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p><strong>举个例子</strong>:<br>五一节快到了，你们全家都想去国外玩一下，首先你们需要确定去哪儿，然后再决定怎么去(跟团，或者自由行),然后需要带一些什么零食在路上(水，薯片，牙土豆等等)，然后你们在当天去机场怎么去(滴滴出行或者坐地铁)，然后你们就可以飞到国外。突然，你爸说，搞这些东西好复杂呀，不如我们叫一个秘书来整理这一切吧(前提是要有一个秘书哈),然后我们就直接负责到国外就行，接着你们都不用管关于旅行的事了然后愉快的开始玩吃鸡。<br>其实这就是一个面向对象。你不需要知道怎么去国外，整个过程你不用管，你所要关心的就是安全到达国外就可以，而这个过程就交给了你爸爸的秘书这个对象来完成了。所以我们面向的就是对象(你爸爸的秘书),这就是面向对象的思想。<br>用代码可以这样描述:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TravelAbroad</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.travelMode = <span class="string">'Free-Exercise'</span>;</span><br><span class="line">  <span class="keyword">this</span>.food = [<span class="string">'water'</span>, <span class="string">'Potato chips'</span>, <span class="string">'Tooth potatoes'</span>];</span><br><span class="line">  <span class="keyword">this</span>.transportationWay = <span class="string">'didi'</span>;</span><br><span class="line">  <span class="keyword">this</span>.goAirport = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'we go to ariport by'</span> + <span class="keyword">this</span>.transportationWay);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">this</span>.goAbroad = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// some code before arrive abroad</span></span><br><span class="line">    <span class="keyword">this</span>.goAirport();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'安全到达国外'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> personFather = <span class="keyword">new</span> TravelAbroad();</span><br><span class="line">personFather.goAbroad();</span><br></pre></td></tr></table></figure>
-<h3 id="面向过程"><a href="#面向过程" class="headerlink" title="面向过程"></a>面向过程</h3><p>既然说了<strong>面向对象</strong>，那么与之对应的就是<strong>面向过程</strong>。其实面向过程相比面向对象来说就很好理解了，比如上诉例子中，你爸爸的秘书做的事情就是面向过程，然后用代码解释就是，在函数执行过程中，要实现一个一个的功能就是执行一个一个的函数模块。最熟悉的<code>C</code>语言就是一种面向过程的语言。</p>
-<p class="tip"> 面向过程是一件事“该怎么做“，面向对象是一件事“该让谁来做”，然后那个“谁”就是对象，他要怎么做是他自己的事，反正最后一群对象合力能把事做好就行了。</p>
-
-<h3 id="javascript-的面向对象"><a href="#javascript-的面向对象" class="headerlink" title="javascript 的面向对象"></a>javascript 的面向对象</h3><p>面向对象（Object-Oriented，OO）的语言有一个标志，那就是它们都有类的概念，而通过类可以创建任意多个具有相同属性和方法的对象。但是在ECMAScript 中没有类的概念，因此它的对象也与基于类的语言中的对象有所不同。<br>ECMA-262 把对象定义为：“无序属性的集合，其属性可以包含基本值、对象或者函数。”严格来讲，这就相当于说对象是一组没有特定顺序的值。对象的每个属性或方法都有一个名字，而每个名字都映射到一个值。正因为这样，我们可以把 ECMAScript 的对象想象成散列表：无非就是一组名值对，其中值可以是数据或函数。</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>在这篇文章中，介绍了什么是面向对象和面向过程，以及<code>javascript</code>中对象的含义。在下篇文章中将要介绍一些对象属性方面的知识。如果文章有错误还望各位大佬提出，一起节流学习。</p>
-<p><br><br>下一篇: <a href="https://kuangpf.github.io/blog/2018/03/02/javascript-object-properties/">javascript 面向对象版块之对象属性</a><br>上一篇: <a href="https://kuangpf.github.io/blog/2018/03/02/javascript-object-oriented/">javascript 面向对象的程序设计</a></p>
+            <section class="markdown-content"><h1 id="mpvue-weui"><a href="#mpvue-weui" class="headerlink" title="mpvue-weui"></a><a href="https://github.com/KuangPF/mpvue-weui" target="_blank" rel="noopener">mpvue-weui</a></h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上周美团开源了 <a href="https://github.com/Meituan-Dianping/mpvue" target="_blank" rel="noopener">mpvue</a> 框架，他基于<code>Vue.js</code> 的小程序开发框架，从底层支持 <code>Vue.js</code> 语法和构建工具体系。what，小程序可以用<code>vue</code>写了？简直有点不太敢确定，花了<a href="http://mpvue.com/mpvue/quickstart/" target="_blank" rel="noopener">5分钟</a>看了一下简介，没错，真的可以用<code>vue</code>开发小程序。真的是**限制了我的想象力，明白又该学写了，于是就开始准备利用这个框架写一点项目，感受一下他的魅力(其实是踩坑)。</p>
+<h2 id="重写-WeUI"><a href="#重写-WeUI" class="headerlink" title="重写 WeUI"></a>重写 <code>WeUI</code></h2><p>俗话说，<strong>第一个吃螃蟹的人，总要踩一些坑</strong>（俗话有这么说过？）。<a href="https://weui.io/" target="_blank" rel="noopener">WeUI</a>是微信的官方 UI 库，在小程序中或者移动端使用的非常多，那么就有了一些想法:用 <code>mpvue</code> 重写 <code>WeUI</code>。</p>
+<h2 id="mpvue-weui是什么"><a href="#mpvue-weui是什么" class="headerlink" title="mpvue-weui是什么"></a><code>mpvue-weui</code>是什么</h2><p>也许 <code>mpvue-weui</code> 的内容不像它的名字那么高大上，它不是一个UI库（原谅我霸占了这么好的名字），其实它就是一个 <code>WeUI</code>的 demo 库，就像 <a href="https://weui.io/" target="_blank" rel="noopener">WeUI</a>一样，只不过是基于 <code>mpvue</code> 框架重写了一下。</p>
+<h2 id="重写目的"><a href="#重写目的" class="headerlink" title="重写目的"></a>重写目的</h2><p>其实重写的目的就是看看<code>mpvue</code>好不好用，里面有哪些坑，然后将它写成<a href="https://kuangpf.github.io/mpvue-weui/#/">文档</a>的形式，从而避免基于<code>mpvue</code>框架开发的人再次踩坑。</p>
+<h2 id="重写感受"><a href="#重写感受" class="headerlink" title="重写感受"></a>重写感受</h2><p>当重写完了以后，发现最大的感受就是：</p>
+<ul>
+<li>开发体验很棒，VSCode(IDE 自选)写代码，小程序开发工具开效果；</li>
+<li>对小程序官方组件和 API 支持的非常完美；</li>
+<li>快捷的 webpack 构建机制，开发过程中热更新.</li>
+<li>…</li>
+</ul>
+<p>这次主要是重写 <code>Weui</code>，可能在自定义组件交互方面还没涉及，比如可以使用<code>vuex</code>进行状态管理，或者将来要支持<code>vue-router</code>。总之很好用，为美团点赞。</p>
+<h2 id="重写效果"><a href="#重写效果" class="headerlink" title="重写效果"></a>重写效果</h2><p><img src="https://user-gold-cdn.xitu.io/2018/3/14/16224e73e631622d?w=381&amp;h=670&amp;f=png&amp;s=12631" alt=""><br><img src="https://user-gold-cdn.xitu.io/2018/3/14/16224e7707ec3aac?w=378&amp;h=670&amp;f=png&amp;s=14440" alt=""><br><img src="https://user-gold-cdn.xitu.io/2018/3/14/16224e7fae68699b?w=376&amp;h=669&amp;f=png&amp;s=6951" alt=""><br><img src="https://user-gold-cdn.xitu.io/2018/3/14/16224e81004b17b2?w=377&amp;h=670&amp;f=png&amp;s=8907" alt=""></p>
+<h2 id="踩坑文档"><a href="#踩坑文档" class="headerlink" title="踩坑文档"></a>踩坑文档</h2><p><a href="https://kuangpf.github.io/mpvue-weui/#/">mpvue-weui 踩坑文档</a></p>
+<p>tip: 文档会随着<code>mpvue</code>新语法或者新特性的更新而继续完善。</p>
+<h2 id="相关申明"><a href="#相关申明" class="headerlink" title="相关申明"></a>相关申明</h2><ol>
+<li>本项目<a href="https://github.com/KuangPF/mpvue-weui" target="_blank" rel="noopener">mpvue-weui</a>主要使用了 <a href="https://github.com/Tencent/weui-wxss" target="_blank" rel="noopener">weui-wxss</a> 中的相关文件，主要目的在于交流学习，如果冒犯了相关的开源协议，实属抱歉。</li>
+<li>这篇文档是自己在重写了 <code>WeUI</code> 以后记录的，如果有说的不对的地方还希望各位大佬指出，一起学习。</li>
+</ol>
 </section>
             <!-- Tags START -->
             
                 <div class="tags">
                     <span>Tags:</span>
                     
-  <a href="/blog/tags#javascript" >
-    <span class="tag-code">javascript</span>
+  <a href="/blog/tags#mpvue" >
+    <span class="tag-code">mpvue</span>
   </a>
 
-  <a href="/blog/tags#object" >
-    <span class="tag-code">object</span>
+  <a href="/blog/tags#vue" >
+    <span class="tag-code">vue</span>
+  </a>
+
+  <a href="/blog/tags#小程序" >
+    <span class="tag-code">小程序</span>
   </a>
 
 
@@ -185,7 +197,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#面向对象"><span class="toc-nav-text">面向对象</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#面向过程"><span class="toc-nav-text">面向过程</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#javascript-的面向对象"><span class="toc-nav-text">javascript 的面向对象</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#小结"><span class="toc-nav-text">小结</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#mpvue-weui"><span class="toc-nav-text">mpvue-weui</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#前言"><span class="toc-nav-text">前言</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#重写-WeUI"><span class="toc-nav-text">重写 WeUI</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#mpvue-weui是什么"><span class="toc-nav-text">mpvue-weui是什么</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#重写目的"><span class="toc-nav-text">重写目的</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#重写感受"><span class="toc-nav-text">重写感受</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#重写效果"><span class="toc-nav-text">重写效果</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#踩坑文档"><span class="toc-nav-text">踩坑文档</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#相关申明"><span class="toc-nav-text">相关申明</span></a></li></ol></li></ol>
     
   </div>
 </aside>
@@ -196,7 +208,7 @@
 
 <script>
   (function () {
-    var url = 'https://kuangpf.github.io/blog/2018/03/02/javascript-understand-object/';
+    var url = 'https://kuangpf.github.io/blog/2018/03/20/mpvue-weui/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -249,7 +261,7 @@
     });
 
     var gitment = new Gitment({
-        id: '面向对象版块之理解对象', // 可选。默认为 location.href
+        id: '用 vue 写小程序，基于 mpvue 框架重写 weui', // 可选。默认为 location.href
         owner: 'KuangPF',
         repo: 'blog',
         oauth: {
@@ -262,7 +274,7 @@
     /* var gitmentConfig = "KuangPF";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "面向对象版块之理解对象",
+        id: "用 vue 写小程序，基于 mpvue 框架重写 weui",
         owner: "KuangPF",
         repo: "bolg",
         oauth: {
