@@ -920,6 +920,9 @@ h2.article-head {
 .author .share-icons .icon-github {
   color: #333;
 }
+.author .share-icons .icon-juejin {
+  color: #006cff;
+}
 .author .share-icons .icon-sf {
   color: #009a61;
 }
